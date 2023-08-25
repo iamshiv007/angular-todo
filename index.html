@@ -1,14 +1,44 @@
-<!doctype html>
-<html ng-app>
+<!DOCTYPE html>
+<html ng-app="todoApp">
   <head>
+    <title>Angular Learning</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css" />
   </head>
   <body>
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
+    <h2>Todo List</h2>
+    <div ng-controller="TodoListController as todoList">
+      <span
+        >{{todoList.remaining()}} of {{todoList.todos.length}} remainning</span
+      >
+      [
+      <a herf="" ng-click="todoList.archive()">archive</a>
+      ]
+
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <label for="" class="checkbox">
+            <input type="checkbox" ng-model="todo.done" />
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </label>
+        </li>
+      </ul>
+
+      <form action="">
+        <input
+          type="text"
+          ng-model="todoList.todoText"
+          size="30"
+          placeholder="add new todo here"
+        />
+        <input
+          type="button"
+          ng-click="todoList.addTodo()"
+          class="btn-primary"
+          value="add"
+        />
+      </form>
     </div>
   </body>
 </html>
